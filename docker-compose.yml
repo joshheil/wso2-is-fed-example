@@ -1,0 +1,13 @@
+version: '2'
+services:
+  wso2-serviceprovider:
+    build: ./ServiceProvider
+    ports:
+     - "9443:9443"
+  wso2-identityprovider:
+    build: ./IdentityProvider
+    volumes:
+      - ${PWD}/IdentityProvider/repository/conf/identity/identity.xml:/opt/wso2/repository/conf/identity/identity.xml
+      - ${PWD}/IdentityProvider/repository/conf/carbon.xml:/opt/wso2/repository/conf/carbon.xml
+    ports:
+     - "9444:9444"
