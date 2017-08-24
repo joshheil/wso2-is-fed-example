@@ -361,15 +361,15 @@
         -->
         <KeyStore>
             <!-- Keystore file location-->
-            <Location>${carbon.home}/repository/resources/security/wso2carbon.jks</Location>
+            <Location>${carbon.home}/repository/resources/security/upmcwso2.jks</Location>
             <!-- Keystore type (JKS/PKCS12 etc.)-->
             <Type>JKS</Type>
             <!-- Keystore password-->
-            <Password>wso2carbon</Password>
+            <Password>upmcwso2</Password>
             <!-- Private Key alias-->
-            <KeyAlias>wso2carbon</KeyAlias>
+            <KeyAlias>upmcwso2</KeyAlias>
             <!-- Private Key password-->
-            <KeyPassword>wso2carbon</KeyPassword>
+            <KeyPassword>upmcwso2</KeyPassword>
         </KeyStore>
 
         <!--
