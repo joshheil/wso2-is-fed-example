@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: idprovider
+  labels:
+    app: idprovider
+spec:
+  ports:
+    - name: idprovider
+      port: 9444
+  selector:
+    app: idprovider
+  type: NodePort
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: idprovider
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: idprovider
+    spec:
+      containers:
+      - name: idprovider
+        image: joshheil/wso2isfedexample_wso2-identityprovider:0.0.0.2
+        volumeMounts:
+        - name: identity-volume
+          mountPath: /opt/wso2/repository/conf/identity/identity.xml
+          subPath: identity.xml
+        - name: carbon-volume
+          mountPath: /opt/wso2/repository/conf/carbon.xml
+          subPath: carbon.xml
+        - name: endpointconfig-volume
+          mountPath: /opt/wso2/repository/conf/identity/EndpointConfig.properties
+          subPath: EndpointConfig.properties
+        - name: catalina-volume
+          mountPath: /opt/wso2/repository/conf/tomcat/catalina-server.xml
+          subPath: catalina-server.xml
+        - mountPath: /mount-9p
+          name: cert-volume
+        imagePullPolicy: Always
+        ports:
+          - name: idprovider
+            containerPort: 9444
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
+          requests:
+            cpu: 500m
+            memory: 1024Mi  
+      volumes:
+      - name: identity-volume
+        configMap:
+          name: identity
+      - name: carbon-volume
+        configMap:
+          name: carbon 
+      - name: endpointconfig-volume
+        configMap:
+          name: endpointconfig
+      - name: catalina-volume
+        configMap:
+          name: catalina
+      - name: cert-volume
+        hostPath:
+          path: /mount-9p   
+        
+         
