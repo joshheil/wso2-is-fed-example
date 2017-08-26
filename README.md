@@ -41,7 +41,7 @@ The `identity.xml` file has been updated to skip the consent screen when attempt
  <SkipUserConsent>true</SkipUserConsent>
  ```
 
-The file can be found in `<IS_HOME>/repository/conf/indentity/identity.xml`
+The file can be found in `<IS_HOME>/repository/conf/identity/identity.xml`
 
 ### Management Configuration
 
