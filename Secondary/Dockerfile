@@ -6,7 +6,6 @@ RUN wget https://s3.amazonaws.com/wso2-ent/wso2is-5.3.0.zip && \
     mv /opt/wso2is-5.3.0 /opt/wso2 && \
     rm wso2is-5.3.0.zip
 
-COPY repository/resources/security/upmcwso2.jks /opt/wso2/repository/resources/security/upmcwso2.jks
 COPY repository/resources/security/client-truststore.jks /opt/wso2/repository/resources/security/client-trustore.jks
 
 ENTRYPOINT ["/opt/wso2/bin/wso2server.sh"]
